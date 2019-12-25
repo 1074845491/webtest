@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Z丶の博客</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+
+		}
+		body,html{
+			height: 100%;
+		}
+		
+		#bg{
+ 			
+			width: 100%;
+			height: 100%;
+			background: url(q1.png) no-repeat;
+			background-size: 100% 100%;		
+		}
+		#header{
+            position: absolute;
+			display: flex;
+			width: 100%;
+			height: 10%;
+			background-color: rgba(0,0,0,0.8);
+			justify-content: space-around;
+			align-items: center;
+			top: 0;
+
+
+		}
+		ul{
+			color: white;
+			padding-bottom: 0;
+			list-style: none;
+			font-size: 15pt;
+			font-weight: 100;
+
+
+		}
+		ul li{
+			display: inline-block;
+			transition: all .5s;
+
+		}
+		ul li:hover{
+			cursor: pointer;
+        	color: #2db5a3;
+		}
+		       
+        a{
+
+        	color: white;
+        }
+        ul li:nth-child(1){
+        	position: absolute;
+        	left: 10%;
+        	font-size: 20pt;
+        }
+        #left{
+        	display: flex;
+        	width: 250px;
+        	height: 90%;
+        	position: absolute;
+        	bottom: 0;
+        
+        	justify-content: flex-start;
+        }
+        #info{
+       
+        	display: flex;
+        	width: 210px;
+        	height: 100%;
+        	flex-direction: column;
+        	background-color: rgba(220,220,220,0.3);
+        	/*justify-content: flex-end;*/
+        	align-items: center;
+        	/*float: left;*/
+        }
+        #menu{
+        	/*position: absolute;*/
+        	width: auto;
+        	height: 90%;
+        	/*bottom: 0;*/
+        	/*float: left;*/
+        }
+	</style>
+	
+</head>
+<body>
+	<div id="bg"></div>
+	<div id="header">
+	 	<ul>
+	 		<li>Z丶の博客</li>
+			<li>主页</li>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<li>文章</li>
+		</ul>
+	</div>
+	<div id="left">
+		<div id="info">
+
+			<img src="1.jpg" style="width: 70%;height: 18%;border-radius: 50%;position: absolute;top: 3%;">
+		</div>
+		<div id="menu">
+			<button style="width: 40px;height: 30px;background-color: rgb(255,255,255);background: url(12.png) no-repeat;background-size: 100% 100%;"></button>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		
+
+		var btn = document.getElementById("menu");
+		var Left = document.getElementById("left");
+		var Info = document.getElementById("info");
+	
+		var timer = null;
+		var steps=0;
+		
+		btn.onclick=function(){
+			if(Left.offsetLeft>=0){
+				show(timer,steps);
+			}
+			else{
+				hide(timer,steps);
+			}
+			
+		};
+
+
+		function show(time,step){
+			clearInterval(time);
+			time = setInterval(function(){
+				if(Left.offsetLeft>-210){
+					Left.style.left = Left.offsetLeft-step+'px';
+					
+					step = step + 1;
+				}
+				else{
+					clearInterval(time);
+				}
+			},20);
+		}
+
+
+		function hide(time,step){
+			clearInterval(time);
+			time = setInterval(function(){
+				if(Left.offsetLeft<0){
+					Left.style.left = Left.offsetLeft+step+'px';
+					btn.style.left = btn.offsetLeft+step+'px';
+					step = step + 1;
+				}
+				else{
+					clearInterval(time);
+				}
+			},20);
+
+		}
+		
+	</script>
+</body>
+</html>
